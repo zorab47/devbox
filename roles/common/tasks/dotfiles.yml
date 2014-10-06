@@ -1,0 +1,8 @@
+---
+- name: Install git
+  action: apt pkg=git state=present
+
+- name: Clone dotfiles repository (if it doesn't already exist).
+  action: git repo=https://github.com/zorab47/dotfiles.git
+              dest=~/.dotfiles
+  sudo: no

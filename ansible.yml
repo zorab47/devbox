@@ -1,0 +1,19 @@
+---
+- hosts: all
+  sudo: yes
+
+  roles:
+    - common
+
+  tasks:
+    - apt: pkg={{ item }} state=latest
+      with_items:
+        - vim
+        - git
+        - autojump
+        - silversearcher-ag
+        - xclip
+        - exuberant-ctags
+
+    - name: Set vim as default editor
+      command: update-alternatives --set editor /usr/bin/vim.basic

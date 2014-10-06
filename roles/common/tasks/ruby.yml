@@ -1,0 +1,37 @@
+---
+- name: Add Brightbox PPA
+  action: apt_repository repo='ppa:brightbox/ruby-ng-experimental'
+
+- apt: pkg={{ item }} state=latest
+  with_items:
+    - python-software-properties
+    - build-essential
+    - automake
+    - bison
+    - autoconf
+    - pkg-config
+    - libreadline6
+    - libreadline6-dev
+    - openssl
+    - libssl-dev
+    - curl
+    - zlib1g
+    - zlib1g-dev
+    - libyaml-dev
+    - libsqlite3-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - curl
+    - ruby2.1
+    - ruby2.1-dev
+
+- gem: name=bundler state=latest
+
+- name: Gems enhancing IRB
+  action: gem name={{ item }} state=latest
+  with_items:
+    - brice
+    - awesome_print
+    - hirb
+    - looksee
+    - interactive_editor
